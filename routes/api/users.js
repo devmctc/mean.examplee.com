@@ -49,11 +49,11 @@ router.put('/', function(req, res){
 
   Users.findOne({'_id': req.body._id}, function(err, user){
 
-   if(err) {
-     return res.json({success: false, error: err});
-   }
+    if(err) {
+      return res.json({success: false, error: err});
+    }
 
-   if(user) {
+    if(user) {
 
     let data = req.body;
 
@@ -81,10 +81,9 @@ router.put('/', function(req, res){
       }
     });
 
-   }
+    }
 
   });
-
 });
 
 router.delete('/:userId', function(req,res){
@@ -102,6 +101,6 @@ router.delete('/:userId', function(req,res){
   });
 
 });
-
+    
 
 module.exports = router;
