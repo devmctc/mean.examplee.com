@@ -7,11 +7,12 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var apiUsersRouter = require('./routes/api/users');
-
+var apiArticlesRouter = require('./routes/api/articles');
 var LocalStrategy = require('passport-local').Strategy;
 var Users = require('./models/users');
 var apiAuthRouter = require('./routes/api/auth');
 var authRouter = require('./routes/auth');
+var articlesRouter = require('./routes/articles');
 
 var app = express();
 
@@ -99,7 +100,7 @@ app.use(function(req,res,next){
   var whitelist = [
     '/',
     '/auth',
-   
+    '/articles'
   ];
 
   //req.url holds the current URL
@@ -115,7 +116,7 @@ app.use(function(req,res,next){
   var subs = [
     '/public/',
     '/api/auth/',
-   
+    '/articles'
   ];
 
   //The query string provides a partial URL match beginning
@@ -141,9 +142,9 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/users', apiUsersRouter);
 app.use('/api/auth', apiAuthRouter);
-
+app.use('/api/articles', apiArticlesRouter);
 app.use('/auth', authRouter);
-
+app.use('/articles', articlesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
